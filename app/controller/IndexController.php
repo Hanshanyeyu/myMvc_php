@@ -3,6 +3,7 @@
  *	Test Unit 测试控制器
  *	
  */
+use MyMvcPro\Libs\Test;
 
 class IndexController extends Controller{
  
@@ -14,5 +15,12 @@ class IndexController extends Controller{
     //测试方法
     public function hello(){
         echo "This is fun hello()";
+    }
+
+    public function nsTest(){
+    	$info = Test::test();
+    	echo $info;
+    	// var_dump(dirname(APP_SYS_PATH));
+
     }
 }

@@ -60,6 +60,71 @@ function tlog(){
 
 
 
+// C方法，获取和设置配置参数，借鉴Thinkphp
+function C($name=null, $value=null, $default=null){
+    // 静态变量，只有在为定义时候定义，这里相当于引入全局 $_config
+    static $_config = array();
+    // C() 返回 config.php 配置参数
+    if (empty($name)) {
+        return $_config;
+
+    }
+    if (is_string($name)) {
+        //id 一维变量
+        if (!strpos(".", $name)) {
+            //统一upper
+            $name = strtoupper($name);
+            if (empty($value)) {
+                return isset($_config[$name]) ? $_config[$name] : $default;
+
+            }
+            $_config[$name] = $value;
+            // 赋值不返回.
+            return null;
+        }
+        //user.id 二维变量
+        $nameAr = explode(".", $name);
+        if (empty($value)) {
+            return isset($_config[strtoupper($nameAr[0])][strtoupper($nameAr[1])]) ? $_config[strtoupper($nameAr[0])][strtoupper($nameAr[1])] : $default;
+
+        }
+        $_config[strtoupper($nameAr[0])][strtoupper($nameAr[1])] = $value;
+        return null;
+    }
+}
+
+
+// 自动加载类
+function loader($className){
+    $classFile = getClassFile($className);
+    if (file_exists($classFile)) {
+        require_once($classFile);
+
+
+    }
+}
+
+
+
+// 获取class绝对路径
+function getClassFile($className){
+    global $namespaces;
+    $names = explode("\\",$className);
+    $name = array_pop($names);
+
+    $spaceDir = join("\\",$names);
+    if ($spaceDir == 'MyMvcPro/mymvc') {
+        $path = APP_SYS_PATH;
+
+    } else {
+        $path = $namespaces[$key];
+
+    }
+    $file = $path . "/" . $class . ".php";
+    return $file;
+
+}
+
 
 
 ?>

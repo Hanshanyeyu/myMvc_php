@@ -25,6 +25,19 @@ define('APP_SYS_PATH',dirname(__FILE__));
 //引用全局函数
 require_once(APP_SYS_PATH."/functions.php");
 
+
+//加载配置文件 config.php 
+$configFile = dirname(APP_SYS_PATH)."/config.php";
+var_dump($configFile);
+
+$_config = array();
+
+if (file_exists($configFile)) {
+	$_config = require_once($configFile);
+
+}
+
+
 //获取控制器 && 方法
 $route = getRoute();
 $controller = $route['c'];

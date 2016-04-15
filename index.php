@@ -7,3 +7,5 @@
 
 // 加载mvc.php
 require_once 'mymvc/mvc.php';
+
+// var_dump(APP_SYS_PATH);
