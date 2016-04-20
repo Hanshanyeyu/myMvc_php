@@ -15,6 +15,7 @@ date_default_timezone_set('PRC');
 
 //项目跟路径，且绝对路径.
 define('APP_PATH', dirname($_SERVER['SCRIPT_FILENAME']));
+var_dump(APP_PATH);
 //站点路径，相对路径
 define('SITE_PATH',dirname($_SERVER['SCRIPT_NAME']));
 //系统配置路径
@@ -28,7 +29,7 @@ require_once(APP_SYS_PATH."/functions.php");
 
 //加载配置文件 config.php 
 $configFile = dirname(APP_SYS_PATH)."/config.php";
-var_dump($configFile);
+// var_dump($configFile);
 
 $_config = array();
 
@@ -36,6 +37,12 @@ if (file_exists($configFile)) {
 	$_config = require_once($configFile);
 
 }
+
+var_dump('The $_config is '.json_encode($_config));
+// 加载命名空间
+$namespaces = C("namespaces");
+var_dump($namespaces);
+spl_autoload_register("loader");
 
 
 //获取控制器 && 方法

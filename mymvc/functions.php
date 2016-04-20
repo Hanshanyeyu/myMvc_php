@@ -63,8 +63,9 @@ function tlog(){
 // C方法，获取和设置配置参数，借鉴Thinkphp
 function C($name=null, $value=null, $default=null){
     // 静态变量，只有在为定义时候定义，这里相当于引入全局 $_config
-    static $_config = array();
+    // static $_config = array();
     // C() 返回 config.php 配置参数
+    global $_config;
     if (empty($name)) {
         return $_config;
 
@@ -73,7 +74,7 @@ function C($name=null, $value=null, $default=null){
         //id 一维变量
         if (!strpos(".", $name)) {
             //统一upper
-            $name = strtoupper($name);
+            // $name = strtoupper($name);
             if (empty($value)) {
                 return isset($_config[$name]) ? $_config[$name] : $default;
 
@@ -85,10 +86,9 @@ function C($name=null, $value=null, $default=null){
         //user.id 二维变量
         $nameAr = explode(".", $name);
         if (empty($value)) {
-            return isset($_config[strtoupper($nameAr[0])][strtoupper($nameAr[1])]) ? $_config[strtoupper($nameAr[0])][strtoupper($nameAr[1])] : $default;
-
+            return isset($_config[$nameAr[0]][$nameAr[1]]) ? $_config[$nameAr[0]][$nameAr[1]] : $default;
         }
-        $_config[strtoupper($nameAr[0])][strtoupper($nameAr[1])] = $value;
+        $_config[$nameAr[0]][$nameAr[1]] = $value;
         return null;
     }
 }
@@ -98,6 +98,7 @@ function C($name=null, $value=null, $default=null){
 function loader($className){
     $classFile = getClassFile($className);
     if (file_exists($classFile)) {
+        var_dump('exists');
         require_once($classFile);
 
 
@@ -117,10 +118,13 @@ function getClassFile($className){
         $path = APP_SYS_PATH;
 
     } else {
-        $path = $namespaces[$key];
+        $path = $namespaces[$spaceDir];
 
     }
-    $file = $path . "/" . $class . ".php";
+    $file = $path . "/" . $name . ".php";
+    var_dump($namespaces);
+    var_dump($spaceDir);
+    var_dump($file);
     return $file;
 
 }

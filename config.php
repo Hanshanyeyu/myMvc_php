@@ -11,8 +11,8 @@
 
 return array(
 	'namespaces'=>array(
-		'MVCPRO\MODEL'=>dirname(APP_SYS_PATH).'/models',
-		'MVCPRO\LIBS'=>dirname(APP_SYS_PATH).'/libs'
+		'MyMvcPro\models'=>APP_PATH."/models",
+		'MyMvcPro\libs'=>APP_PATH."/libs"
 
 
 	),

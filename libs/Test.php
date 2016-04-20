@@ -4,7 +4,7 @@
  *
  */
 
-namespace MYMVCPRO\LIBS;
+namespace MyMvcPro\libs;
 
 class Test {
 	public static function test() {

@@ -3,7 +3,8 @@
  *	Test Unit 测试控制器
  *	
  */
-use MyMvcPro\Libs\Test;
+use MyMvcPro\libs\Test;
+
 
 class IndexController extends Controller{
  
