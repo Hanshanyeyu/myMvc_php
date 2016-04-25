@@ -45,6 +45,19 @@ var_dump($namespaces);
 spl_autoload_register("loader");
 
 
+$tempPath = C("temp_path");
+if(!isset($tempPath)){
+    //如果没有配置缓存目录，默认是根目录下的runtime文件夹
+    $tempPath = dirname(APP_SYS_PATH)."/runtime/";
+}
+define("TEMP_PATH",$tempPath);
+//定义缓存目录
+define('CACHE_PATH',$tempPath."cache/");
+//定义日志存放目录
+// define('LOG_PATH',$cachePath."log/");
+
+
+
 //获取控制器 && 方法
 $route = getRoute();
 $controller = $route['c'];

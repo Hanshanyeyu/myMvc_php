@@ -12,7 +12,8 @@
 return array(
 	'namespaces'=>array(
 		'MyMvcPro\models'=>APP_PATH."/models",
-		'MyMvcPro\libs'=>APP_PATH."/libs"
+		'MyMvcPro\libs'=>APP_PATH."/libs",
+		'MyMvcPro\mymvc'=>APP_PATH."/mymvc"
 
 
 	),
